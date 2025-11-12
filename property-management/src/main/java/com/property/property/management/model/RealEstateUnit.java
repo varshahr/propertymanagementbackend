@@ -1,32 +1,33 @@
 package com.property.property.management.model;
 
 import jakarta.persistence.*;
-import java.math.BigDecimal;
 
 @Entity
-@Table(name = "real_estate_unit")
 public class RealEstateUnit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;         // e.g., Greenwood Apartment
+    private String name;
     private String location;
-    private BigDecimal rent;
-
-    @Enumerated(EnumType.STRING)
-    private PropertyType type;   // HOUSE, SHOP, LAND
-
+    private double rent;
     private String ownerName;
-    private boolean available;   // available for rent/sale
-    private int bedrooms;        // only for HOUSE
-    private int bathrooms;       // only for HOUSE
-    private double area;         // in sq meters
+    private String type;
+    private int bedrooms;
+    private int bathrooms;
+    private double area;
+    private boolean available;
 
-    private String imageUrl;     // 🔥 new field for property image
+    // 🆕 Add these two
+    private String contactNumber;
+    private String contactEmail;
 
-    // Getters and setters
+    // 🆕 Optional extras if you already added them in frontend
+    private String imageUrl;
+    private String description;
+
+    // --- Getters and Setters ---
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -36,17 +37,14 @@ public class RealEstateUnit {
     public String getLocation() { return location; }
     public void setLocation(String location) { this.location = location; }
 
-    public BigDecimal getRent() { return rent; }
-    public void setRent(BigDecimal rent) { this.rent = rent; }
-
-    public PropertyType getType() { return type; }
-    public void setType(PropertyType type) { this.type = type; }
+    public double getRent() { return rent; }
+    public void setRent(double rent) { this.rent = rent; }
 
     public String getOwnerName() { return ownerName; }
     public void setOwnerName(String ownerName) { this.ownerName = ownerName; }
 
-    public boolean isAvailable() { return available; }
-    public void setAvailable(boolean available) { this.available = available; }
+    public String getType() { return type; }
+    public void setType(String type) { this.type = type; }
 
     public int getBedrooms() { return bedrooms; }
     public void setBedrooms(int bedrooms) { this.bedrooms = bedrooms; }
@@ -57,6 +55,18 @@ public class RealEstateUnit {
     public double getArea() { return area; }
     public void setArea(double area) { this.area = area; }
 
+    public boolean isAvailable() { return available; }
+    public void setAvailable(boolean available) { this.available = available; }
+
+    public String getContactNumber() { return contactNumber; }
+    public void setContactNumber(String contactNumber) { this.contactNumber = contactNumber; }
+
+    public String getContactEmail() { return contactEmail; }
+    public void setContactEmail(String contactEmail) { this.contactEmail = contactEmail; }
+
     public String getImageUrl() { return imageUrl; }
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 }

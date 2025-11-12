@@ -15,34 +15,35 @@ public class PropertyController {
     @Autowired
     private PropertyRepository repository;
 
-    // Get all properties
+    // 🏡 Get all properties
     @GetMapping
     public List<RealEstateUnit> getAllProperties() {
         return repository.findAll();
     }
 
-    // Get property by ID
+    // 🔍 Get property by ID
     @GetMapping("/{id}")
     public RealEstateUnit getPropertyById(@PathVariable Long id) {
         return repository.findById(id).orElse(null);
     }
 
-    // Add new property
+    // ➕ Add new property
     @PostMapping
     public RealEstateUnit addProperty(@RequestBody RealEstateUnit property) {
         return repository.save(property);
     }
 
-    // Delete property
+    // 🗑️ Delete property
     @DeleteMapping("/{id}")
     public void deleteProperty(@PathVariable Long id) {
         repository.deleteById(id);
     }
 
-    // Update property
+    // ✏️ Update property details
     @PutMapping("/{id}")
     public RealEstateUnit updateProperty(@PathVariable Long id, @RequestBody RealEstateUnit propertyDetails) {
         RealEstateUnit property = repository.findById(id).orElse(null);
+
         if (property != null) {
             property.setName(propertyDetails.getName());
             property.setLocation(propertyDetails.getLocation());
@@ -53,8 +54,16 @@ public class PropertyController {
             property.setBedrooms(propertyDetails.getBedrooms());
             property.setBathrooms(propertyDetails.getBathrooms());
             property.setArea(propertyDetails.getArea());
+
+            // 🆕 Newly added fields
+            property.setContactNumber(propertyDetails.getContactNumber());
+            property.setContactEmail(propertyDetails.getContactEmail());
+            property.setImageUrl(propertyDetails.getImageUrl());
+            property.setDescription(propertyDetails.getDescription());
+
             return repository.save(property);
         }
+
         return null;
     }
 }
